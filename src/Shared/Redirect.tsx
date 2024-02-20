@@ -19,6 +19,7 @@ export enum Redirect {
   CREATE = "create",
   MOVE = "move",
   GROUP = "group",
+  GROUP_STOGARE = "group-stogare",
   OVERVIEW = "overview",
   CALENDAR = "calendar",
   Gemini = "Gemini",

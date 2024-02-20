@@ -21,6 +21,7 @@ import NewFolderStogareComponent from "../Component/Stogare/Stogare/NewFolder";
 import UploadStogareComponent from "../Component/Stogare/Stogare/Upload/Upload";
 import MoveStogareComponent from "../Component/Stogare/Stogare/Move";
 import HomeComponent from "../Component/Home/Home";
+import StogareGroupComponent from "../Component/Stogare/Group/Stogare";
 
 function Router() {
   return (
@@ -68,6 +69,10 @@ function Router() {
                   element={<UploadStogareComponent />}
                 ></Route>
               </Route>
+              <Route
+                path={Redirect.GROUP_STOGARE + "/:groupId"}
+                element={<StogareGroupComponent />}
+              ></Route>
               <Route
                 path={Redirect.GROUP}
                 element={<GroupStogareComponent />}

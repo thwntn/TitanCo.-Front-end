@@ -14,13 +14,16 @@ function SideGroupComponent() {
           </span>
         </button>
         <button className="rounded-md border border-gray-100 bg-white p-2 px-4 hover:bg-gray-100">
-          Sắp xếp theo tên
+          Refresh
         </button>
         <button className="rounded-md border border-gray-100 bg-white p-2 px-4 hover:bg-gray-100">
-          Mới nhất
+          Sort by name
         </button>
         <button className="rounded-md border border-gray-100 bg-white p-2 px-4 hover:bg-gray-100">
-          Cũ hơn
+          Newest
+        </button>
+        <button className="rounded-md border border-gray-100 bg-white p-2 px-4 hover:bg-gray-100">
+          Lastest
         </button>
       </div>
     </>

@@ -4,7 +4,9 @@ import NotSupportIcon from "../../../../Assets/Icon/Stogare/NotSupport.png";
 import themes from "./_.module.scss";
 
 const element: { [key: string]: (item: Stogare) => JSX.Element } = {
-  picture: (item: Stogare) => <img className={themes.image} src={item.url} />,
+  picture: (item: Stogare) => (
+    <img className={themes.image} src={item.thumbnail} />
+  ),
   video: (item: Stogare) => (
     <video className={themes.image}>
       <source src={item.url} />

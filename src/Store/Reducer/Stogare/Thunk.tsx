@@ -21,11 +21,6 @@ export const homeRequest = createAsyncThunk(Path.Home, () => {
   return response;
 });
 
-export const groupRequest = createAsyncThunk(Path.Group, () => {
-  const response = instance.get<Group[]>(Path.Group);
-  return response;
-});
-
 export const recentRequest = createAsyncThunk(Path.Recent, () => {
   const response = instance.get<Stogare[]>(Path.Recent);
   return response;

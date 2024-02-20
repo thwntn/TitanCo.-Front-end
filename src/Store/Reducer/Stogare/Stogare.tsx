@@ -3,12 +3,12 @@ import { Home, Stogare, StogareState } from "./Model";
 import {
   allFolderRequest,
   destinationRequest,
-  groupRequest,
   homeRequest,
   recentRequest,
   stogareRequest,
 } from "./Thunk";
 import { ContextMode, contexts } from "./Context";
+import { groupRequest, listStogareRequest } from "../Group/Thunk";
 
 export enum StogareType {
   File = 0,
@@ -17,6 +17,7 @@ export enum StogareType {
 }
 
 export const ROOT_FOLDER = -1;
+export const GROUP_ROOT_FOLDER = -2;
 
 const type: { [key: string]: string[] } = {
   music: [".mp3", ".flac", ".m4a"],
@@ -75,22 +76,38 @@ export const stogareSlice = createSlice({
     },
   },
   extraReducers(builder) {
+    // @Home info
     builder.addCase(homeRequest.fulfilled, (state, actions) => {
       state.home = actions.payload.data;
     });
+
+    // @Recent stogare
     builder.addCase(recentRequest.fulfilled, (state, actions) => {
       state.stogares = actions.payload.data;
     });
-    builder.addCase(groupRequest.fulfilled, (state, actions) => {
-      state.groups = actions.payload.data;
-    });
+
+    // @Fetch stogare
     builder.addCase(stogareRequest.fulfilled, (state, actions) => {
       state.stogares = actions.payload.data;
     });
+
+    // @All folders
     builder.addCase(allFolderRequest.fulfilled, (state, actions) => {
       state.stogares = actions.payload.data;
     });
+
+    // @Destination folder
     builder.addCase(destinationRequest.fulfilled, (state, actions) => {
+      state.stogares = actions.payload.data;
+    });
+
+    // @Fetch groups
+    builder.addCase(groupRequest.fulfilled, (state, actions) => {
+      state.groups = actions.payload.data;
+    });
+
+    // @Group stogare
+    builder.addCase(listStogareRequest.fulfilled, (state, actions) => {
       state.stogares = actions.payload.data;
     });
   },

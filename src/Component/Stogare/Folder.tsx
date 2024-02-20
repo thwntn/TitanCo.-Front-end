@@ -28,7 +28,9 @@ function FolderStogareComponent() {
   );
 
   function openFolder(stogareId: number) {
-    navigate(`../${Redirect.FILE}/${stogareId}`);
+    navigate(
+      `${Redirect.APP}/${Redirect.STOGARE}/${Redirect.FILE}/${stogareId}`
+    );
   }
 
   function setContext(item: Stogare) {

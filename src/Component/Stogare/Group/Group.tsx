@@ -1,25 +1,23 @@
 import PathStogareIcon from "../../../Assets/Icon/Stogare/Path.svg";
 import { useEffect } from "react";
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../../Store/Store";
 import Empty from "../../../UI/Empty/Empty";
-import SideGroupComponent from "./Navigation";
+import SideGroupComponent from "./Side";
 import Name from "../../../UI/Name/Name";
-import { groupRequest } from "../../../Store/Reducer/Stogare/Thunk";
+import { groupRequest } from "../../../Store/Reducer/Group/Thunk";
+import { Redirect } from "../../../Shared/Redirect";
 
 function GroupStogareComponent() {
   const dispatch = useDispatch<AppDispatch>();
+  const navigation = useNavigate();
   const stogareState = useSelector(
     (rootState: RootState) => rootState.stogareState
   );
 
   function Goto(groupId: number) {
-    console.log(groupId);
-
-    // navigate(
-    //   `${Redirect.GROUP}/${groupId}/${StogareItemEnum.DefaultMainFolder}`,
-    // );
+    navigation(`../${Redirect.GROUP_STOGARE}/${groupId}`);
   }
 
   //   SignalrContext.useSignalREffect(

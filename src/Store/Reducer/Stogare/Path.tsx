@@ -8,12 +8,4 @@ export enum Path {
   Rename = "/Stogare/Rename",
   ListDestination = "/Stogare/ListDestination",
   Move = "/Stogare/Move",
-
-  Group = "/Group",
-  GroupAddMember = "/Group/AddMember",
-  GroupRemoveMember = "/Group/RemoveMember",
-  GroupListStogare = "/Group/ListStogare",
-  GroupDestination = "/Group/ListDestination",
-  GroupRename = "/Group/Rename",
-  GroupInvite = "/Group/AcceptInvite",
 }
