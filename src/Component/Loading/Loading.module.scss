@@ -1,0 +1,14 @@
+.frame {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  background: #fbfbfb;
+  .img {
+    width: 312px;
+    object-fit: cover;
+    object-position: center;
+  }
+}

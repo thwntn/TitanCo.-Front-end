@@ -1,0 +1,72 @@
+.frame {
+  position: relative;
+  padding: 1.5rem;
+  cursor: pointer;
+
+  &:hover {
+    .listNotification {
+      display: flex;
+    }
+  }
+
+  .frameIcon {
+    position: relative;
+
+    .icon {
+      opacity: 0.4;
+      width: 24px;
+    }
+
+    .dot {
+      display: flex;
+      position: absolute;
+      justify-content: center;
+      align-items: center;
+      border-radius: 9999px;
+      color: #ffffff;
+      top: -8px;
+      right: -8px;
+      background: #ae1717;
+      width: 18px;
+      height: 18px;
+    }
+  }
+
+  .listNotification {
+    display: none;
+    position: absolute;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    flex-direction: column;
+    gap: 0.5rem;
+    border-radius: 12px;
+    right: 0px;
+    background: #ffffff;
+    backdrop-filter: blur(8px);
+    width: 452px;
+    box-shadow: rgba(157, 166, 175, 0.2) 0px 0px 2px 0px,
+      rgba(187, 192, 199, 0.12) 0px 12px 24px -4px;
+    animation: identifier 0.32s ease forwards;
+
+    &::after {
+      content: "";
+      top: -24px;
+      right: 12px;
+      position: absolute;
+      border-top: 12px solid transparent;
+      border-left: 12px solid transparent;
+      border-right: 12px solid transparent;
+      border-bottom: 12px solid #ffffff;
+    }
+  }
+}
+
+@keyframes identifier {
+  from {
+    opacity: 0.5;
+    transform: translateY(5%);
+  }
+  to {
+    opacity: 1;
+  }
+}

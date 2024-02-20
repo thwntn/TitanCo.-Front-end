@@ -1,0 +1,25 @@
+.frame {
+  position: fixed;
+  display: flex;
+  justify-content: flex-end;
+  inset: 0;
+  background: #0000002c;
+  z-index: 100;
+  animation: opatity 0.32s ease;
+  .wrapper {
+    background: #f9fcfc;
+    animation: slide 0.32s ease;
+  }
+}
+
+@keyframes opatity {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes slide {
+  from {
+    transform: translateX(20%);
+  }
+}

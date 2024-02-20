@@ -1,0 +1,26 @@
+.frame {
+  display: flex;
+  padding: 3rem;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 1rem;
+  width: 100%;
+  height: 100%;
+  background: #fafbfb;
+
+  .icon {
+    width: 256px;
+  }
+
+  .title {
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+    font-weight: 700;
+  }
+
+  .content {
+    color: #9ca3af;
+  }
+}

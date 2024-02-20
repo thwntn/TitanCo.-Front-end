@@ -1,0 +1,49 @@
+.button {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  min-width: 76px;
+  width: fit-content;
+  height: 36px;
+  border-radius: 48px;
+  overflow: hidden;
+  padding: 0px 24px;
+  gap: 8px;
+  &::after {
+    display: none;
+    content: "";
+    border: 4px solid rgba(255, 255, 255, 0.168);
+    border-radius: 100%;
+    position: absolute;
+    animation: animation 1.32s ease forwards;
+  }
+  &:hover {
+    &::after {
+      display: block;
+    }
+  }
+  .icon {
+    width: 8px;
+  }
+}
+
+.warning {
+  background: #f9f3f3;
+  color: #f64545;
+}
+
+.default {
+  box-shadow: 0px 0px 4px rgba($color: #ffffff, $alpha: 0.42);
+  background: #fb5a50;
+  color: #fff;
+}
+
+@keyframes animation {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(8000%);
+  }
+}

@@ -1,0 +1,47 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: PublicSans;
+  src: url(./Assets/Font/PublicSans.ttf);
+}
+
+@font-face {
+  font-family: RozhaOne;
+  src: url("./Assets/Font/RozhaOne.ttf");
+}
+
+* {
+  font-family: PublicSans;
+}
+
+html {
+  font-size: 62.5%;
+  scroll-behavior: smooth;
+  color: #1b2229;
+}
+
+body {
+  font-size: 1.26rem;
+}
+
+input:-webkit-autofill {
+  -webkit-text-fill-color: rgb(0, 0, 0);
+  -webkit-box-shadow: 1 1 1px 1000px #ffffff inset;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c9c9c9;
+  border-radius: 12px;
+  max-height: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}

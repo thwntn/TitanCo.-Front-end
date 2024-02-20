@@ -1,0 +1,80 @@
+.frame {
+  display: flex;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  justify-content: space-between;
+  background-color: #ffffffe1;
+  backdrop-filter: blur(8px);
+  .wrapperSearch {
+    display: flex;
+    align-items: center;
+    margin: 0px 24px;
+    gap: 12px;
+    .icon {
+      opacity: 0.2;
+      width: 24px;
+      height: 24px;
+      object-fit: contain;
+    }
+    > span {
+      font-weight: bold;
+    }
+  }
+}
+
+.search {
+  display: flex;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  justify-content: flex-end;
+  align-items: center;
+
+  .input {
+    display: none;
+    width: 512px;
+    padding-left: 42px;
+
+    @media (min-width: 768px) {
+      display: block;
+    }
+  }
+}
+
+.profile {
+  display: flex;
+  padding: 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #f3f4f6;
+  }
+
+  .avatar {
+    object-fit: cover;
+    border-radius: 9999px;
+    height: 32px;
+    width: 32px;
+  }
+
+  .content {
+    padding-left: 1rem;
+    display: none;
+    padding-right: 1rem;
+    flex-direction: column;
+
+    .name {
+      font-weight: 700;
+    }
+
+    .email {
+      font-size: 1.1rem;
+    }
+
+    @media (min-width: 768px) {
+      display: flex;
+    }
+  }
+}

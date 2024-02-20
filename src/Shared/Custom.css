@@ -1,0 +1,72 @@
+.custom-border {
+  border: 1px solid #eee;
+}
+
+.custom-shadow {
+  box-shadow: rgba(157, 166, 175, 0.2) 0px 0px 2px 0px,
+    rgba(187, 192, 199, 0.12) 0px 12px 24px -4px;
+}
+
+.custom-frame {
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.custom-animation-show {
+  animation: show-animation 0.36s ease forwards;
+}
+
+.custom-button-create {
+  background: hsl(219, 58%, 50%);
+  color: #fff;
+}
+
+.custom-button-update {
+  background: #ff5900;
+  color: #fff;
+}
+
+.custom-button-delete {
+  background: #ff0000;
+  color: #fff;
+}
+
+.custom-title {
+  font-size: 22px;
+  font-weight: bold;
+  display: block;
+}
+
+@keyframes show-animation {
+  from {
+    scale: 0.8;
+    opacity: 0.5;
+  }
+
+  to {
+    scale: 1;
+    opacity: 1;
+  }
+}
+
+.animation-opacity {
+  animation: opacity 0.36s ease;
+}
+
+.animation-slide-up {
+  animation: slide-up 0.36s ease;
+}
+
+@keyframes opacity {
+  from {
+    opacity: 60%;
+  }
+}
+
+@keyframes slide-up {
+  from {
+    transform: translateX(20%);
+  }
+}

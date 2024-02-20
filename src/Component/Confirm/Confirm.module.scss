@@ -1,0 +1,48 @@
+.frame {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #00000031;
+  animation: opacity 0.32s ease;
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    overflow: hidden;
+    animation: slide 0.32s ease;
+    padding: 24px;
+    .content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      .image {
+        width: 256px;
+        object-fit: cover;
+      }
+    }
+    .buttonGroup {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+    }
+  }
+}
+@keyframes opacity {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes slide {
+  from {
+    transform: scale(85%);
+  }
+}

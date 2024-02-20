@@ -1,0 +1,10 @@
+.icon {
+  padding: 4px;
+  width: 28px;
+  cursor: pointer;
+  border-radius: 4px;
+
+  &:hover {
+    background-color: #00000011;
+  }
+}

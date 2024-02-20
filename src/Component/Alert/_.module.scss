@@ -1,0 +1,26 @@
+.list {
+  display: flex;
+  position: fixed;
+  flex-direction: column;
+  gap: 1rem;
+  top: 12px;
+  right: 12px;
+  z-index: 100;
+
+  .item {
+    display: flex;
+    padding: 1rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    border-radius: 12px;
+    gap: 1rem;
+    align-items: center;
+    background: #fff;
+    box-shadow: rgba(157, 166, 175, 0.2) 0px 0px 2px 0px,
+      rgba(187, 192, 199, 0.12) 0px 12px 24px -4px;
+  }
+
+  .icon {
+    width: 24px;
+  }
+}

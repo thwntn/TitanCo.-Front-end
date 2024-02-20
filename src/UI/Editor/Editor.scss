@@ -1,0 +1,30 @@
+$shadow: rgba(157, 166, 175, 0.2) 0px 0px 2px 0px,
+  rgba(187, 192, 199, 0.12) 0px 12px 24px -4px;
+
+.quill {
+  width: 100%;
+  .ql-editor {
+    padding: 12px 0px;
+    line-height: 24px;
+    &::before {
+      font-style: normal;
+    }
+    font-size: 12px;
+  }
+  .ql-picker-label {
+    border: none !important;
+  }
+  .ql-picker-options {
+    box-shadow: $shadow !important;
+    border: none !important;
+    border-radius: 6px !important;
+  }
+  .ql-toolbar.ql-snow {
+    background-color: #ffffff;
+    border-radius: 6px !important;
+    border: 1px solid #f4f4f4;
+  }
+  .ql-container {
+    border: none !important;
+  }
+}
