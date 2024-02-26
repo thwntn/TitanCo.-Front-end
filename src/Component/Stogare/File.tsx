@@ -87,7 +87,7 @@ function FileStogareComponent() {
                 <button className="group/context relative">
                   <Context
                     onClick={() => setContext(item)}
-                    data={stogareState.context}
+                    items={stogareState.context}
                   ></Context>
                 </button>
               </div>

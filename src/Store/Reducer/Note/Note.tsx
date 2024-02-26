@@ -29,6 +29,11 @@ export const noteSlice = createSlice({
     builder.addCase(fetchNotes.fulfilled, (state, actions) => {
       state.notes = actions.payload.data;
     });
+
+    // @Infomation
+    builder.addCase(info.fulfilled, (state, actions) => {
+      state.noteSelected = actions.payload.data;
+    });
   },
 });
 
@@ -84,6 +89,11 @@ export const fetchNotes = createAsyncThunk(
     return response;
   }
 );
+
+export const info = createAsyncThunk("info", async (noteId: number) => {
+  const response = await instance<NoteResponse>(`Note/${noteId}`);
+  return response;
+});
 
 export const restoreNote = createAsyncThunk(
   "restoreNote",

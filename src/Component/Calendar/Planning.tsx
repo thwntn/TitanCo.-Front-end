@@ -11,6 +11,26 @@ import TablePlanningComponent from "./Table";
 import moment from "moment";
 import InfoComponent from "./Info";
 import Name from "../../UI/Name/Name";
+import Select, { Item } from "../../UI/Select/Select";
+
+const mode: Item[] = [
+  {
+    name: "Day",
+    id: 1,
+  },
+  {
+    name: "Month",
+    id: 1,
+  },
+  {
+    name: "Week",
+    id: 1,
+  },
+  {
+    name: "All",
+    id: 1,
+  },
+];
 
 function PlanningCalendarComponent() {
   const now = new Date();
@@ -26,7 +46,10 @@ function PlanningCalendarComponent() {
   }, []);
   return (
     <div className="custom-frame">
-      <Name title="Group"></Name>
+      <Name title="Planning"></Name>
+      <div className="w-[156px]">
+        <Select items={mode} value="Mode view" onSelect={Function}></Select>
+      </div>
       <div className="w-full flex gap-8">
         <Calendar
           dateTime={now}

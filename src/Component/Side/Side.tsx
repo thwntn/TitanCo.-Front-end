@@ -1,5 +1,5 @@
 import themes from "./Side.module.scss";
-import { app, system } from "./Data";
+import { app, system, stogare, note, task } from "./Data";
 import Input from "../../UI/Input/Input";
 import AppNoteIcon from "../../Assets/Icon/Linked/Calendar.png";
 import RecursiveComponent from "./Recursive/Recursive";
@@ -49,6 +49,9 @@ function SideCoponent(props: IProps) {
           </div>
         </div>
         <RecursiveComponent item={app} title="FEATURE"></RecursiveComponent>
+        <RecursiveComponent item={task} title="TASK"></RecursiveComponent>
+        <RecursiveComponent item={stogare} title="STOGARE"></RecursiveComponent>
+        <RecursiveComponent item={note} title="NOTE"></RecursiveComponent>
         <RecursiveComponent
           item={system}
           title="OTHER CASE"

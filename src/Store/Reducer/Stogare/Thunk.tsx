@@ -1,14 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { Path } from "./Path";
-import {
-  CreateFolder,
-  Group,
-  Home,
-  Move,
-  Rename,
-  Stogare,
-  UploadFile,
-} from "./Model";
+import { CreateFolder, Home, Move, Rename, Stogare, UploadFile } from "./Model";
 import { instance } from "../../Axios/Axios";
 
 export const allFolderRequest = createAsyncThunk(Path.Folders, () => {

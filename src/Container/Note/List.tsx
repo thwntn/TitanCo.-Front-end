@@ -15,8 +15,9 @@ import { mainSlice } from "../../Store/Reducer/Main/Main";
 import { useDebouncedCallback } from "use-debounce";
 import { Json } from "../../Handle/Json";
 import { StatusNote } from "../../Shared/Enum";
+import { useEffect } from "react";
 const NAME_DEFAULT = "Write down your ideas! 💡";
-const DESCRPTION_DEFAULT = "Write down your description";
+const DESCRPTION_DEFAULT = "Title, short description, image...";
 const CONTENT_DEFAULT =
   '"Sometimes, on Monday, when servers at A16 are announcing the special, you can almost fell the excitement at the table when the waiters say, `And of course, since it`s Monday... we have meatballs.` say Shelley Lingren."';
 
@@ -103,6 +104,10 @@ function ListNoteContainer() {
       })
     ).then(() => dispatch(fetchNotes(noteState.statusNote)));
   }
+
+  useEffect(function () {
+    dispatch(fetchNotes(noteState.statusNote));
+  }, []);
 
   return (
     <ListNoteComponent

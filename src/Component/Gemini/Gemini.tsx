@@ -57,7 +57,7 @@ function GeminiComponent() {
           </div>
           <div className="flex gap-4">
             <Icon src={CleanGeminiIcon} onClick={clean}></Icon>
-            <Context data={[]}></Context>
+            <Context items={[]}></Context>
           </div>
         </div>
         <div className="z-10 p-8">

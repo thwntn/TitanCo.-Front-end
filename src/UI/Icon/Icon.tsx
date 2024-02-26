@@ -15,11 +15,9 @@ function Icon(props: IProps) {
     { style: { width: props.size, height: props.size } },
     props
   );
-  detailedHTMLProps.className = clsx(
-    themes.icon,
-    themes.hover,
-    props.className
-  );
+  detailedHTMLProps.className = clsx(themes.icon, props.className, {
+    [themes.hover]: props.onClick,
+  });
   return <img {...detailedHTMLProps} />;
 }
 

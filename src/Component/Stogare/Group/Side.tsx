@@ -1,15 +1,20 @@
 import Icon from "../../../UI/Icon/Icon";
 import AddGroupIcon from "../../../Assets/Icon/Stogare/GroupAdd.svg";
+import { useNavigate } from "react-router-dom";
+import { Redirect } from "../../../Shared/Redirect";
 
 function SideGroupComponent() {
-  function CreateGroup() {
-    // Services.Group.Create(_NAME_DEFAULT);
+  const navigation = useNavigate();
+
+  function gotoCreatePage() {
+    navigation(`${Redirect.APP}/${Redirect.GROUP}/${Redirect.CREATE}`);
   }
+
   return (
     <>
       <div className="flex gap-4 rounded-md bg-gray-50 p-3">
         <button className="group relative flex items-center gap-4">
-          <span onClick={CreateGroup}>
+          <span onClick={gotoCreatePage}>
             <Icon src={AddGroupIcon}></Icon>
           </span>
         </button>

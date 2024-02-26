@@ -59,7 +59,7 @@ function FolderStogareComponent() {
               className="group/context absolute right-4 top-4"
             >
               <Context
-                data={stogareState.context}
+                items={stogareState.context}
                 onClick={() => setContext(item)}
               ></Context>
             </button>

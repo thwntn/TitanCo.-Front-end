@@ -13,7 +13,7 @@ interface IProps
     React.ButtonHTMLAttributes<HTMLButtonElement>,
     HTMLButtonElement
   > {
-  data: ContextHandle[];
+  items: ContextHandle[];
 }
 
 function Context(props: IProps) {
@@ -24,7 +24,7 @@ function Context(props: IProps) {
     <button {...detailedHTMLProps}>
       <Icon src={MoreNoteIcon}></Icon>
       <ul className={themes.list}>
-        {props.data.map((item, index) => (
+        {props.items.map((item, index) => (
           <li key={index} onClick={item.cb}>
             {item.name}
           </li>

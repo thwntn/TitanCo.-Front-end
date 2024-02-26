@@ -1,68 +1,75 @@
 import Button from "../../UI/Button/Button";
 import Editor from "../../UI/Editor/Editor";
 import Input from "../../UI/Input/Input";
-import BackgroundNoteImage from "../../Assets/Image/Note/Background.png";
-import { NoteResponse } from "../../Store/Reducer/Note/Model";
-import { useDispatch } from "react-redux";
-import { AppDispatch } from "../../Store/Store";
-import { noteSlice } from "../../Store/Reducer/Note/Note";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../../Store/Store";
+import {
+  fetchNotes,
+  info,
+  noteSlice,
+  updateNote,
+} from "../../Store/Reducer/Note/Note";
+import Name from "../../UI/Name/Name";
+import { useEffect } from "react";
+import { useParams } from "react-router-dom";
 
-interface IProps {
-  save: () => void;
-  updateNote: (key: string, value: string) => void;
-  item: NoteResponse;
-}
-
-function EditorNoteComponent(props: IProps) {
+function EditorNoteComponent() {
   const dispatch = useDispatch<AppDispatch>();
+  const params = useParams();
+  const noteState = useSelector((rootState: RootState) => rootState.noteSate);
 
-  function close() {
-    dispatch(noteSlice.actions.select(null));
+  function save() {
+    noteState.noteSelected &&
+      dispatch(updateNote(noteState.noteSelected)).then(() =>
+        dispatch(fetchNotes(noteState.statusNote))
+      );
   }
+
+  function modify(key: string, value: string) {
+    if (noteState.noteSelected)
+      dispatch(
+        noteSlice.actions.select({ ...noteState.noteSelected, [key]: value })
+      );
+  }
+
+  function session() {
+    dispatch(info(Number(params.noteId)));
+  }
+
+  useEffect(session, []);
   return (
-    <div
-      onClick={close}
-      className="fixed inset-0 bg-[#00000034] z-50 p-4 h-[100vh] flex justify-end w-full items-end flex-col animation-opacity"
-    >
-      {/* <Icon
-        src={CloseNoteIcon}
-        onClick={close}
-        className="absolute top-2 right-2"
-      ></Icon> */}
-      <div
-        onClick={(event) => event.stopPropagation()}
-        className="p-8 overflow-y-auto h-full w-[512px] bg-white rounded-2xl animation-slide-up"
-      >
-        <img
-          src={BackgroundNoteImage}
-          className="h-[356px] w-full object-contain p-16"
-        />
-        <div className="flex items-center justify-between w-full">
+    <div className="custom-frame">
+      <Name title="Editor"></Name>
+      <div className="flex gap-12">
+        <div className="flex flex-col gap-4 min-w-[256px]">
+          <div className="text-[16px] font-bold">Detail</div>
+          <Input
+            value={noteState.noteSelected?.description}
+            onChange={(event) => modify("description", event.target.value)}
+            mode="view"
+          ></Input>
+        </div>
+        <div className="flex flex-col px-8 gap-4 w-full custom-shadow rounded-2xl">
           <div className="flex flex-col gap-4 py-6">
+            <div className="text-[12px]">Name</div>
             <Input
-              className="text font-bold text-4xl"
-              value={props.item.name}
-              onChange={(event) => props.updateNote("name", event.target.value)}
-              mode="view"
-            ></Input>
-            <Input
-              value={props.item.description}
-              onChange={(event) =>
-                props.updateNote("description", event.target.value)
-              }
-              mode="view"
+              value={noteState.noteSelected?.name}
+              onChange={(event) => modify("name", event.target.value)}
             ></Input>
           </div>
-          <div className="px-6">
-            <Button mode="default" icon="next" onClick={props.save}>
-              Save
+          <div className="text-[12px]">Content</div>
+          <div className="bg-[#F6F7F8] min-h-[512px] rounded-xl">
+            <Editor
+              onChange={(value) => void modify("content", value)}
+              defaultValue={noteState.noteSelected?.content}
+            ></Editor>
+          </div>
+          <div className=" w-full flex justify-end p-8">
+            <Button mode="default" icon="next" onClick={save}>
+              Save Change
             </Button>
           </div>
         </div>
-        <Editor
-          onChange={(value) => void props.updateNote("content", value)}
-          defaultValue={props.item.content}
-        ></Editor>
       </div>
     </div>
   );

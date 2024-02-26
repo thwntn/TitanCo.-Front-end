@@ -8,6 +8,7 @@ interface IProps
     HTMLInputElement
   > {
   mode?: "view";
+  title?: string;
 }
 
 const viewSetting: CSSProperties = {
@@ -24,7 +25,12 @@ function Input(props: IProps) {
 
   if (props.mode == "view")
     detailedHTMLProps.style = { ...detailedHTMLProps.style, ...viewSetting };
-  return <input {...detailedHTMLProps} />;
+  return (
+    <div className={themes.frame}>
+      {props.title && <span className={themes.title}>{props.title}</span>}
+      <input {...detailedHTMLProps} />
+    </div>
+  );
 }
 
 export default Input;

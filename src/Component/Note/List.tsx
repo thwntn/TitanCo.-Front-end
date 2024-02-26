@@ -10,6 +10,8 @@ import Slideshow, { ISlideshow } from "../../UI/Slideshow/Slideshow";
 import { StatusNote } from "../../Shared/Enum";
 import TrashNoteImage from "../../Assets/Image/Note/Trash.png";
 import Name from "../../UI/Name/Name";
+import { useNavigate } from "react-router-dom";
+import { Redirect } from "../../Shared/Redirect";
 
 const nameofStatus: { [key: number]: string } = {
   [StatusNote.Default]: "Notes",
@@ -46,11 +48,16 @@ const data: ISlideshow[] = [
 ];
 
 function ListNoteComponent(props: IProps) {
+  const navigation = useNavigate();
   const noteState = useSelector((rootState: RootState) => rootState.noteSate);
   const identity = useSelector(
     (rootState: RootState) => rootState.identityState
   );
   if (!identity.user) return identity.user;
+
+  function select(note: NoteResponse) {
+    navigation(`${Redirect.APP}/${Redirect.NOTE}/${Redirect.EDIT}/${note.id}`);
+  }
 
   return (
     <div className="flex flex-col p-8 px-20 gap-16 h-[100vh] w-full overflow-y-auto">
@@ -83,20 +90,16 @@ function ListNoteComponent(props: IProps) {
       <div className="flex flex-col gap-4">
         <ul className="grid grid-cols-1 md:grid-cols-4 gap-6">
           {noteState.notes.map((item, index) => {
-            const active = noteState.noteSelected?.id == item.id;
             return (
               <li
                 className="relative flex flex-col rounded-[16px] cursor-pointer custom-border p-5 gap-4 bg-white"
-                onClick={() => props.select(item)}
+                onClick={() => select(item)}
                 key={index}
-                style={{
-                  ...(active ? ACTIVE_STYLE : null),
-                }}
               >
                 <Context
                   onClick={(event) => event.stopPropagation()}
                   className="absolute right-[4px] top-[4px]"
-                  data={props.getContextItemNote(item)}
+                  items={props.getContextItemNote(item)}
                 ></Context>
                 <span className="font-bold">{item.name}</span>
                 <p className="max-h-[56px] overflow-hidden">

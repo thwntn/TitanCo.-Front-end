@@ -49,14 +49,15 @@ export interface Group {
   id: number;
   name: string;
   dataGroups: Stogare[];
-  user: User;
+  profile: User;
   members: Member[];
 }
 
 interface Member {
   groupId: number;
-  userId: number;
-  user: User;
+  profileId: number;
+  profile: User;
+  status: number;
 }
 
 export interface CreateFolder {

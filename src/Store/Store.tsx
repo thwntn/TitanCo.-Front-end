@@ -5,6 +5,7 @@ import { identitySlice } from "./Reducer/Identity/User";
 import { stogareSlice } from "./Reducer/Stogare/Stogare";
 import { calendarSlice } from "./Reducer/Calendar/Planning";
 import { GeminiSlice } from "./Reducer/Gemini/Gemini";
+import { groupSlice } from "./Reducer/Group/Group";
 
 export const store = configureStore({
   reducer: {
@@ -12,6 +13,7 @@ export const store = configureStore({
     noteSate: noteSlice.reducer,
     identityState: identitySlice.reducer,
     stogareState: stogareSlice.reducer,
+    groupState: groupSlice.reducer,
     calendarState: calendarSlice.reducer,
     geminiState: GeminiSlice.reducer,
   },

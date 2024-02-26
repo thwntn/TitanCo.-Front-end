@@ -5,7 +5,6 @@ import { store } from "../Store/Store";
 import AppContainer from "../Container/App/App";
 import MainContainer from "../Container/Main";
 import LoginContainer from "../Container/Login";
-import NoteContainer from "../Container/Note/Note";
 import ProfileContainer from "../Container/Profile";
 import ArchiveContainer from "../Container/Note/Archive";
 import TrashContainer from "../Container/Note/Trash";
@@ -22,6 +21,11 @@ import UploadStogareComponent from "../Component/Stogare/Stogare/Upload/Upload";
 import MoveStogareComponent from "../Component/Stogare/Stogare/Move";
 import HomeComponent from "../Component/Home/Home";
 import StogareGroupComponent from "../Component/Stogare/Group/Stogare";
+import ListNoteContainer from "../Container/Note/List";
+import EditorNoteComponent from "../Component/Note/Editor";
+import CreateGroup from "../Component/Stogare/Group/Create";
+import ManagerGroup from "../Component/Stogare/Group/Manager";
+import InviteMemberGroup from "../Component/Stogare/Group/InviteMember";
 
 function Router() {
   return (
@@ -45,7 +49,16 @@ function Router() {
                 path={Redirect.PROFILE}
                 element={<ProfileContainer />}
               ></Route>
-              <Route path={Redirect.NOTE} element={<NoteContainer />}></Route>
+              <Route path={Redirect.NOTE}>
+                <Route
+                  path={Redirect.EDIT + "/:noteId"}
+                  element={<EditorNoteComponent />}
+                ></Route>
+                <Route
+                  path={Redirect.LIST}
+                  element={<ListNoteContainer />}
+                ></Route>
+              </Route>
               <Route
                 path={Redirect.ARCHIVE}
                 element={<ArchiveContainer />}
@@ -73,10 +86,26 @@ function Router() {
                 path={Redirect.GROUP_STOGARE + "/:groupId"}
                 element={<StogareGroupComponent />}
               ></Route>
-              <Route
-                path={Redirect.GROUP}
-                element={<GroupStogareComponent />}
-              ></Route>
+              <Route path={Redirect.GROUP}>
+                <Route
+                  path={Redirect.MANAGER + "/:groupId"}
+                  element={<ManagerGroup />}
+                ></Route>
+                <Route
+                  path={Redirect.INVITE + "/:groupId"}
+                  element={<InviteMemberGroup />}
+                ></Route>
+                <Route path={Redirect.CREATE} element={<CreateGroup />}></Route>
+                <Route path={Redirect.CREATE} element={<CreateGroup />}></Route>
+                <Route
+                  path={Redirect.LIST}
+                  element={<GroupStogareComponent />}
+                ></Route>
+                <Route
+                  path={Redirect.LIST}
+                  element={<GroupStogareComponent />}
+                ></Route>
+              </Route>
               <Route
                 path={Redirect.OVERVIEW}
                 element={<HomeStogareComponent />}
