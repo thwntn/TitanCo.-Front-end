@@ -16,7 +16,11 @@ import { AxiosResponse } from "axios";
 import { mainSlice } from "../../../Store/Reducer/Main/Main";
 import { Message } from "../../../Shared/Message";
 import { Redirect } from "../../../Shared/Redirect";
-import { allFolderRequest, createFolder } from "../../../Store/Reducer/Stogare/Thunk";
+import {
+  allFolderRequest,
+  createFolder,
+} from "../../../Store/Reducer/Stogare/Thunk";
+import Frame from "../../../UI/Frame/Frame";
 
 function NewFolderStogareComponent() {
   const dispatch = useDispatch<AppDispatch>();
@@ -55,12 +59,12 @@ function NewFolderStogareComponent() {
   }
 
   useEffect(function () {
-    dispatch(allFolderRequest()).then(function (response) {
+    dispatch(allFolderRequest()).then(function (response: any) {
       const stogateId = search.get("stogareId");
       const responseData = response.payload as AxiosResponse<Stogare[]>;
       // @Query set
       const folder = responseData.data.find(
-        (item) => item.id == Number(stogateId)
+        (item) => item.id == String(stogateId)
       );
       if (stogateId && folder) {
         dispatch(stogareSlice.actions.current(folder.id));
@@ -69,7 +73,7 @@ function NewFolderStogareComponent() {
     });
   }, Array.from({ length: 0 }));
   return (
-    <div className="custom-frame">
+    <Frame>
       <Name title="Create new folder"></Name>
       <span>Add to folder</span>
       <div className=" relative select-none cursor-pointer">
@@ -93,7 +97,7 @@ function NewFolderStogareComponent() {
           Create
         </Button>
       </form>
-    </div>
+    </Frame>
   );
 }
 

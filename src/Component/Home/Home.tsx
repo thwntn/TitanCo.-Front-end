@@ -1,3 +1,4 @@
+import Frame from "../../UI/Frame/Frame";
 import Name from "../../UI/Name/Name";
 import Slideshow, { ISlideshow } from "../../UI/Slideshow/Slideshow";
 
@@ -27,12 +28,12 @@ const data: ISlideshow[] = [
 
 function HomeComponent() {
   return (
-    <div className=" custom-frame">
+    <Frame>
       <Name title="Home"></Name>
       <div className="flex flex-col h-[264px] rounded-3xl overflow-hidden">
         <Slideshow item={data}></Slideshow>
       </div>
-    </div>
+    </Frame>
   );
 }
 

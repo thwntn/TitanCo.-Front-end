@@ -27,7 +27,7 @@ function FolderStogareComponent() {
     (item) => item.type === StogareType.Folder
   );
 
-  function openFolder(stogareId: number) {
+  function openFolder(stogareId: string) {
     navigate(
       `${Redirect.APP}/${Redirect.STOGARE}/${Redirect.FILE}/${stogareId}`
     );
@@ -39,7 +39,7 @@ function FolderStogareComponent() {
 
   useEffect(
     function () {
-      params.stogareId && dispatch(stogareRequest(Number(params.stogareId)));
+      params.stogareId && dispatch(stogareRequest(String(params.stogareId)));
     },
     [params]
   );

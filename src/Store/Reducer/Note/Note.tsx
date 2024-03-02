@@ -90,7 +90,7 @@ export const fetchNotes = createAsyncThunk(
   }
 );
 
-export const info = createAsyncThunk("info", async (noteId: number) => {
+export const info = createAsyncThunk("info", async (noteId: string) => {
   const response = await instance<NoteResponse>(`Note/${noteId}`);
   return response;
 });

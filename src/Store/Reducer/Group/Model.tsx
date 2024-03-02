@@ -13,3 +13,15 @@ export interface AddMember {
   emails: string[];
   groupId: string;
 }
+
+export interface RemoveMember extends AddMember {}
+
+export interface Rename {
+  groupId: string;
+  name: string;
+}
+
+export interface ChangeImage {
+  groupId: string;
+  form: FormData;
+}

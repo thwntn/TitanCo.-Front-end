@@ -3,9 +3,6 @@ import PathStogareIcon from "../../../Assets/Icon/Stogare/Path.svg";
 import Context from "../../../UI/Context/Context";
 import { useNavigate } from "react-router-dom";
 import { Redirect } from "../../../Shared/Redirect";
-import { useDispatch } from "react-redux";
-import { AppDispatch } from "../../../Store/Store";
-import { addMember } from "../../../Store/Reducer/Group/Thunk";
 
 interface IProps {
   item: Group;
@@ -48,7 +45,7 @@ function ItemGroup(props: IProps) {
       ></Context>
       <img
         className="h-[156px] w-full rounded-tl-3xl rounded-tr-3xl bg-[#eaeaea] object-cover"
-        src={props.item.profile.coverPicture}
+        src={props.item.image}
         alt=""
       />
       <div className="relative mt-[-38px] flex flex-col items-center justify-start">

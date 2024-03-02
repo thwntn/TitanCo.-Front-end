@@ -69,6 +69,11 @@ function LoginComponent() {
               Signup
             </span>
           </div>
+          <div>
+            Demo
+            <span>Username: demo.cc@gmail.com</span>
+            <span>Password: i@Demo.com849686</span>
+          </div>
           <div className="grid gap-5">
             <div className="relative flex items-center">
               <Icon className="absolute left-[6px]" src={EmailAuth}></Icon>

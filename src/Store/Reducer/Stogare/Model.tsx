@@ -2,7 +2,7 @@ import { ContextHandle } from "../../../UI/Context/Context";
 import { User } from "../Identity/Model";
 
 export interface StogareState {
-  current: number;
+  current: string;
   home: Home;
   stogares: Stogare[];
   groups: Group[];
@@ -11,7 +11,7 @@ export interface StogareState {
 }
 
 export interface Stogare {
-  id: number;
+  id: string;
   counter: number;
   size: number;
   parent: number;
@@ -46,8 +46,9 @@ class Settings {
 }
 
 export interface Group {
-  id: number;
+  id: string;
   name: string;
+  image: string;
   dataGroups: Stogare[];
   profile: User;
   members: Member[];
@@ -62,20 +63,20 @@ interface Member {
 
 export interface CreateFolder {
   name: string;
-  parent: number;
+  parent: string;
 }
 
 export interface UploadFile {
-  stogareId: number;
+  stogareId: string;
   form: FormData;
 }
 
 export interface Rename {
-  stogareId: number;
+  stogareId: string;
   name: string;
 }
 
 export interface Move {
-  stogareId: number;
-  destinationId: number;
+  stogareId: string;
+  destinationId: string;
 }

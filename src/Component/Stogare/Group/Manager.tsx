@@ -1,61 +1,79 @@
 import { useParams } from "react-router-dom";
 import Name from "../../../UI/Name/Name";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../../Store/Store";
-import { info } from "../../../Store/Reducer/Group/Thunk";
+import { changeImage, info, rename } from "../../../Store/Reducer/Group/Thunk";
 import Input from "../../../UI/Input/Input";
-import Select from "../../../UI/Select/Select";
+import Select, { Item } from "../../../UI/Select/Select";
 import Button from "../../../UI/Button/Button";
-import Context from "../../../UI/Context/Context";
-import CameraIcon from "../../../Assets/Icon/Stogare/Camera.svg";
-import Icon from "../../../UI/Icon/Icon";
-
-interface IStatus {
-  [key: string]: {
-    name: string;
-    color: string;
-    background: string;
-  };
-}
-
-const status: IStatus = {
-  0: {
-    name: "Pending",
-    color: "#B86F02",
-    background: "#FFF1D6",
-  },
-  1: {
-    name: "Active",
-    color: "#118D57",
-    background: "#DBF6E5",
-  },
-};
+import ListMemember from "./Manager/ListMemer";
+import { groupSlice } from "../../../Store/Reducer/Group/Group";
+import Frame from "../../../UI/Frame/Frame";
 
 function ManagerGroup() {
   const params = useParams();
   const dispatch = useDispatch<AppDispatch>();
   const group = useSelector((root: RootState) => root.groupState);
+  const refInput = useRef<HTMLInputElement | null>(null);
+
+  function changeAvatarClick() {
+    if (refInput.current) refInput.current.click();
+  }
+
+  function changeOwnerList(): Item[] {
+    if (group.select)
+      return group.select.members.map((item, index) => ({
+        ...item,
+        id: index,
+        name: item.profile.name,
+      }));
+    return [];
+  }
+
+  function changeAvatar(file: File) {
+    const form = new FormData();
+    form.append(file.name, file);
+    dispatch(changeImage({ groupId: String(params.groupId), form }));
+  }
 
   useEffect(function () {
     dispatch(info(String(params.groupId)));
   }, []);
   return (
-    <div className="custom-frame">
+    <Frame>
       <div className="flex justify-between items-center">
         <Name title="Group Manager"></Name>
-        <Button mode="default" icon="next">
+        <Button
+          mode="default"
+          icon="next"
+          onClick={() => {
+            if (group.select)
+              dispatch(
+                rename({
+                  groupId: String(params.groupId),
+                  name: group.select.name,
+                })
+              );
+          }}
+        >
           Save
         </Button>
       </div>
       <div className="flex gap-8">
         <img
-          src={group.select?.profile.coverPicture}
+          src={group.select?.image}
           className="min-w-[456px] h-[256px] object-cover rounded-md"
         />
         <div className="w-full flex flex-col gap-12">
           <div className="flex flex-col gap-2">
-            <Input title="Group name" value={group.select?.name}></Input>
+            <Input
+              title="Group name"
+              value={group.select?.name}
+              onChange={(event) =>
+                dispatch(groupSlice.actions.changeName(event.target.value))
+              }
+            ></Input>
           </div>
           <div className="flex flex-col gap-2">
             <Input
@@ -67,50 +85,29 @@ function ManagerGroup() {
             <Select
               title="Owner"
               value={group.select?.profile.name ?? ""}
-              items={[]}
+              items={changeOwnerList()}
               onSelect={() => {}}
             ></Select>
           </div>
-          <Button mode="warning">Change Avatar</Button>
+          <input
+            ref={refInput}
+            type="file"
+            readOnly
+            onChange={(event) => {
+              if (event.target.files) changeAvatar(event.target.files[0]);
+            }}
+            className="hidden"
+          />
+          <Button mode="warning" onClick={changeAvatarClick}>
+            Change Avatar
+          </Button>
         </div>
       </div>
       <div className="flex flex-col gap-8">
         <span className="font-bold">Members</span>
-        <ul className="flex flex-col gap-6">
-          {group.select?.members.map((item, index) => (
-            <li
-              key={index}
-              className="flex gap-8 justify-between w-full items-center custom-border p-4 rounded-2xl"
-            >
-              <div className="flex items-center gap-4">
-                <img
-                  src={item.profile.avatar}
-                  className="w-[48px] h-[48px] object-cover rounded-full"
-                />
-                <div className="flex flex-col gap-1">
-                  <span>{item.profile.name}</span>
-                  <span className="text-[12px] text-gray-500">
-                    {item.profile.email}
-                  </span>
-                </div>
-              </div>
-              <span>0981483636x</span>
-              <span>Wuckert Inc</span>
-              <span
-                className="p-2 px-6 rounded-full"
-                style={{
-                  color: status[item.status].color,
-                  background: status[item.status].background,
-                }}
-              >
-                {status[item.status].name}
-              </span>
-              <Context items={[]}></Context>
-            </li>
-          ))}
-        </ul>
+        <ListMemember></ListMemember>
       </div>
-    </div>
+    </Frame>
   );
 }
 

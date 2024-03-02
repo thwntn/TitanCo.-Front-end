@@ -7,14 +7,6 @@
     rgba(187, 192, 199, 0.12) 0px 12px 24px -4px;
 }
 
-.custom-frame {
-  padding: 32px;
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
-  animation: frameShow 0.32s ease;
-}
-
 .custom-animation-show {
   animation: show-animation 0.36s ease forwards;
 }

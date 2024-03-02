@@ -4,13 +4,10 @@ import Input from "../../../UI/Input/Input";
 import Name from "../../../UI/Name/Name";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../../Store/Store";
-import {
-  addMember,
-  createGroup,
-  groupRequest,
-} from "../../../Store/Reducer/Group/Thunk";
+import { addMember, groupRequest } from "../../../Store/Reducer/Group/Thunk";
 import { useNavigate, useParams } from "react-router-dom";
 import { Redirect } from "../../../Shared/Redirect";
+import Frame from "../../../UI/Frame/Frame";
 
 function InviteMemberGroup() {
   const params = useParams();
@@ -29,7 +26,7 @@ function InviteMemberGroup() {
   }
 
   return (
-    <div className="custom-frame">
+    <Frame>
       <Name title="Invite Member" />
       <Input
         placeholder="Email..."
@@ -38,7 +35,7 @@ function InviteMemberGroup() {
       <Button mode="default" icon="next" onClick={create}>
         Invite
       </Button>
-    </div>
+    </Frame>
   );
 }
 

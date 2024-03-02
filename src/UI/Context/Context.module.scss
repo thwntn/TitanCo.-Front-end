@@ -14,12 +14,13 @@
     display: none;
     border-radius: 8px;
     top: 100%;
+    right: calc(100% - 32px);
     overflow: hidden;
     flex-direction: column;
     box-shadow: rgba(157, 166, 175, 0.2) 0px 0px 2px 0px,
       rgba(187, 192, 199, 0.12) 0px 12px 24px -4px;
 
-    >li {
+    > li {
       padding: 12px;
       min-width: 120px;
       text-align: left;

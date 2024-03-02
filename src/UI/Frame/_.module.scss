@@ -1,0 +1,14 @@
+.frame {
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  animation: show 0.32s ease;
+}
+
+@keyframes show {
+  from {
+    opacity: 0.5;
+    transform: translateX(-16px);
+  }
+}

@@ -12,6 +12,7 @@ import {
 import Name from "../../UI/Name/Name";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
+import Frame from "../../UI/Frame/Frame";
 
 function EditorNoteComponent() {
   const dispatch = useDispatch<AppDispatch>();
@@ -33,12 +34,12 @@ function EditorNoteComponent() {
   }
 
   function session() {
-    dispatch(info(Number(params.noteId)));
+    dispatch(info(String(params.noteId)));
   }
 
   useEffect(session, []);
   return (
-    <div className="custom-frame">
+    <Frame>
       <Name title="Editor"></Name>
       <div className="flex gap-12">
         <div className="flex flex-col gap-4 min-w-[256px]">
@@ -71,7 +72,7 @@ function EditorNoteComponent() {
           </div>
         </div>
       </div>
-    </div>
+    </Frame>
   );
 }
 

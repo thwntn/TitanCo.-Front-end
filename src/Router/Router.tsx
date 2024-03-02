@@ -26,6 +26,15 @@ import EditorNoteComponent from "../Component/Note/Editor";
 import CreateGroup from "../Component/Stogare/Group/Create";
 import ManagerGroup from "../Component/Stogare/Group/Manager";
 import InviteMemberGroup from "../Component/Stogare/Group/InviteMember";
+import RequestJoinGroup from "../Component/Stogare/Group/Manager/RequestJoinGroup";
+import TransferStogare from "../Component/Stogare/Transfer/Transfer";
+import Invoice from "../Component/Invoice/Invoice";
+import ListInvoice from "../Component/Invoice/List";
+import InfoInvoice from "../Component/Invoice/Info";
+import Product from "../Component/Product/Product";
+import ListProduct from "../Component/Product/List";
+import CreateProduct from "../Component/Product/Create";
+import CreateInvoice from "../Component/Invoice/Create";
 
 function Router() {
   return (
@@ -70,6 +79,10 @@ function Router() {
                   element={<StogareComponent />}
                 ></Route>
                 <Route
+                  path={`${Redirect.TRANSFER}`}
+                  element={<TransferStogare />}
+                ></Route>
+                <Route
                   path={Redirect.CREATE}
                   element={<NewFolderStogareComponent />}
                 ></Route>
@@ -90,6 +103,10 @@ function Router() {
                 <Route
                   path={Redirect.MANAGER + "/:groupId"}
                   element={<ManagerGroup />}
+                ></Route>
+                <Route
+                  path={Redirect.REQUEST}
+                  element={<RequestJoinGroup />}
                 ></Route>
                 <Route
                   path={Redirect.INVITE + "/:groupId"}
@@ -115,9 +132,25 @@ function Router() {
                 element={<PlanningCalendarComponent />}
               ></Route>
               <Route
-                path={Redirect.Gemini}
+                path={Redirect.GEMINI}
                 element={<GeminiComponent />}
               ></Route>
+              <Route path={Redirect.INVOICE} element={<Invoice />}>
+                <Route
+                  path={Redirect.CREATE}
+                  element={<CreateInvoice />}
+                ></Route>
+                <Route path={Redirect.LIST} element={<ListInvoice />}></Route>
+                {/* <Route path={Redirect.INFO} element={<InfoInvoice />}></Route> */}
+              </Route>
+              <Route path={Redirect.PRODUCT} element={<Product />}>
+                <Route
+                  path={Redirect.CREATE}
+                  element={<CreateProduct />}
+                ></Route>
+                <Route path={Redirect.LIST} element={<ListProduct />}></Route>
+                {/* <Route path={Redirect.INFO} element={<InfoInvoice />}></Route> */}
+              </Route>
             </Route>
           </Route>
         </Routes>

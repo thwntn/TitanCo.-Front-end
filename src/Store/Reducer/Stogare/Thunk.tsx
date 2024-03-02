@@ -20,7 +20,7 @@ export const recentRequest = createAsyncThunk(Path.Recent, () => {
 
 export const stogareRequest = createAsyncThunk(
   Path.Stogare,
-  (stogareId: number) => {
+  (stogareId: string) => {
     const response = instance.get<Stogare[]>(`${Path.Stogare}/${stogareId}`);
     return response;
   }
@@ -64,7 +64,7 @@ export const renameStogareRequest = createAsyncThunk(
 
 export const destinationRequest = createAsyncThunk(
   Path.ListDestination,
-  function (stogareId: number) {
+  function (stogareId: string) {
     const response = instance.get<Stogare[]>(
       `${Path.ListDestination}/${stogareId}`
     );

@@ -16,8 +16,8 @@ export enum StogareType {
   DefaultMainFolder = -1,
 }
 
-export const ROOT_FOLDER = -1;
-export const GROUP_ROOT_FOLDER = -2;
+export const ROOT_FOLDER = "-1";
+export const GROUP_ROOT_FOLDER = "-2";
 
 const type: { [key: string]: string[] } = {
   music: [".mp3", ".flac", ".m4a"],
@@ -50,7 +50,7 @@ export const stogareSlice = createSlice({
   name: typeof stogareState,
   initialState: stogareState,
   reducers: {
-    current: (state, actions: { payload: number }) => {
+    current: (state, actions: { payload: string }) => {
       state.current = actions.payload;
     },
     sortByName: (state) => {

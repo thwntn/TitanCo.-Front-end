@@ -8,6 +8,7 @@ import Name from "../../../UI/Name/Name";
 import { groupRequest } from "../../../Store/Reducer/Group/Thunk";
 import { Redirect } from "../../../Shared/Redirect";
 import ItemGroup from "./Item";
+import Frame from "../../../UI/Frame/Frame";
 
 function GroupStogareComponent() {
   const dispatch = useDispatch<AppDispatch>();
@@ -16,7 +17,7 @@ function GroupStogareComponent() {
     (rootState: RootState) => rootState.stogareState
   );
 
-  function Goto(groupId: number) {
+  function Goto(groupId: string) {
     navigation(
       `${Redirect.APP}/${Redirect.STOGARE}/${Redirect.FILE}/${groupId}`
     );
@@ -35,7 +36,7 @@ function GroupStogareComponent() {
   }, []);
   return (
     <>
-      <div className="custom-frame !bg-transparent">
+      <Frame>
         <Name title="Group"></Name>
         <SideGroupComponent></SideGroupComponent>
         <div>
@@ -53,7 +54,7 @@ function GroupStogareComponent() {
             ))}
           </ul>
         </div>
-      </div>
+      </Frame>
       <Outlet></Outlet>
     </>
   );

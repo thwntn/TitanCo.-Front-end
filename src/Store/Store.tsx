@@ -6,6 +6,7 @@ import { stogareSlice } from "./Reducer/Stogare/Stogare";
 import { calendarSlice } from "./Reducer/Calendar/Planning";
 import { GeminiSlice } from "./Reducer/Gemini/Gemini";
 import { groupSlice } from "./Reducer/Group/Group";
+import { invoiceSlice } from "./Reducer/Invoice/Invoice";
 
 export const store = configureStore({
   reducer: {
@@ -16,6 +17,7 @@ export const store = configureStore({
     groupState: groupSlice.reducer,
     calendarState: calendarSlice.reducer,
     geminiState: GeminiSlice.reducer,
+    invoiceState: invoiceSlice.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

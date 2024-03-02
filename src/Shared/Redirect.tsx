@@ -22,6 +22,7 @@ export enum Redirect {
   MOVE = "move",
   GROUP = "group",
   MANAGER = "manager",
+  REQUEST = "request",
   INVITE = "invite",
   GROUP_STOGARE = "group-stogare",
   GROUP_CREATE = "group-create",
@@ -29,5 +30,8 @@ export enum Redirect {
   TRANSFER = "transfer",
   MEMBER = "member",
   CALENDAR = "calendar",
-  Gemini = "Gemini",
+  GEMINI = "gemini",
+  INVOICE = "invoice",
+  PRODUCT = "product",
+  INFO = "info",
 }

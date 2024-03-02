@@ -26,6 +26,7 @@ import {
   stogareRequest,
   uploadFileRequest,
 } from "../../../../Store/Reducer/Stogare/Thunk";
+import Frame from "../../../../UI/Frame/Frame";
 
 function UploadStogareComponent() {
   const [files, setFiles] = useState<File[]>([]);
@@ -73,7 +74,7 @@ function UploadStogareComponent() {
       const responseData = response.payload as AxiosResponse<Stogare[]>;
       // @Query set
       const folder = responseData.data.find(
-        (item) => item.id == Number(stogateId)
+        (item) => item.id == String(stogateId)
       );
       if (stogateId && folder) {
         dispatch(stogareSlice.actions.current(folder.id));
@@ -82,7 +83,7 @@ function UploadStogareComponent() {
     });
   }, Array.from({ length: 0 }));
   return (
-    <div className="custom-frame">
+    <Frame>
       <Name title="Upload file"></Name>
       <div className=" relative select-none cursor-pointer">
         <Select
@@ -130,7 +131,7 @@ function UploadStogareComponent() {
       <Button mode="default" icon="next" onClick={upload}>
         Upload
       </Button>
-    </div>
+    </Frame>
   );
 }
 

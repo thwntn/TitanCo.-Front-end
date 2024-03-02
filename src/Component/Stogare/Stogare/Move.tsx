@@ -17,6 +17,7 @@ import {
   stogareRequest,
 } from "../../../Store/Reducer/Stogare/Thunk";
 import { Redirect } from "../../../Shared/Redirect";
+import Frame from "../../../UI/Frame/Frame";
 
 function MoveStogareComponent() {
   const dispatch = useDispatch<AppDispatch>();
@@ -47,7 +48,7 @@ function MoveStogareComponent() {
     select &&
       dispatch(
         moveRequest({
-          stogareId: Number(params.stogareId),
+          stogareId: String(params.stogareId),
           destinationId: select.id,
         })
       ).then(function () {
@@ -57,10 +58,10 @@ function MoveStogareComponent() {
   }
 
   useEffect(function () {
-    dispatch(destinationRequest(Number(params.stogareId)));
+    dispatch(destinationRequest(String(params.stogareId)));
   }, Array.from({ length: 0 }));
   return (
-    <div className="custom-frame">
+    <Frame>
       <Name title="Move stogare"></Name>
       <span className="font-bold">Move to folder</span>
       <div className=" relative select-none cursor-pointer">
@@ -80,7 +81,7 @@ function MoveStogareComponent() {
           Move
         </Button>
       </form>
-    </div>
+    </Frame>
   );
 }
 

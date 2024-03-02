@@ -7,6 +7,7 @@ import { AppDispatch } from "../../../Store/Store";
 import { createGroup, groupRequest } from "../../../Store/Reducer/Group/Thunk";
 import { useNavigate } from "react-router-dom";
 import { Redirect } from "../../../Shared/Redirect";
+import Frame from "../../../UI/Frame/Frame";
 
 function CreateGroup() {
   const navigation = useNavigate();
@@ -22,7 +23,7 @@ function CreateGroup() {
   }
 
   return (
-    <div className="custom-frame">
+    <Frame>
       <Name title="Create new group" />
       <Input
         placeholder="Group Name..."
@@ -31,7 +32,7 @@ function CreateGroup() {
       <Button mode="default" icon="next" onClick={create}>
         Create
       </Button>
-    </div>
+    </Frame>
   );
 }
 

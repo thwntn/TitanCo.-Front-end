@@ -10,7 +10,10 @@ import FileSideIcon from "../../Assets/Icon/Side/File.svg";
 import NoteSideIcon from "../../Assets/Icon/Side/Note.svg";
 import TrashSideIcon from "../../Assets/Icon/Side/Trash.svg";
 import ArchiveSideIcon from "../../Assets/Icon/Side/Archive.svg";
+import InvoiceSideIcon from "../../Assets/Icon/Side/Invoice.svg";
+import ProductSideIcon from "../../Assets/Icon/Side/Product.svg";
 import LogoutSideIcon from "../../Assets/Icon/Side/Logout.svg";
+import CustomerSideIcon from "../../Assets/Icon/Side/Customer.svg";
 import SettingSideIcon from "../../Assets/Icon/Side/Setting.svg";
 import { Item } from "./Model";
 import { ROOT_FOLDER } from "../../Store/Reducer/Stogare/Stogare";
@@ -44,7 +47,7 @@ export const app: Item[] = [
   },
   {
     name: "Gemini AI (Google - Develop)",
-    path: Redirect.Gemini,
+    path: Redirect.GEMINI,
     icon: GeminiSideIcon,
   },
 ];
@@ -75,7 +78,7 @@ export const stogare: Item[] = [
   },
   {
     name: "Transfer",
-    path: Redirect.TRANSFER,
+    path: `${Redirect.APP}/${Redirect.STOGARE}/${Redirect.TRANSFER}`,
     icon: TransferSideIcon,
   },
   {
@@ -118,6 +121,11 @@ export const stogare: Item[] = [
         path: `${Redirect.GROUP}/${Redirect.CREATE}`,
         icon: RequestSideIcon,
       },
+      {
+        name: "Request",
+        path: `${Redirect.GROUP}/${Redirect.REQUEST}`,
+        icon: RequestSideIcon,
+      },
     ],
   },
 ];
@@ -140,5 +148,61 @@ export const system: Item[] = [
     name: "Logout",
     path: "Redirect.ALARM",
     icon: LogoutSideIcon,
+  },
+];
+
+export const invoice: Item[] = [
+  {
+    name: "Hoá đơn",
+    icon: InvoiceSideIcon,
+    children: [
+      {
+        name: "Danh sách",
+        path: `${Redirect.INVOICE}/${Redirect.LIST}`,
+        icon: SettingSideIcon,
+      },
+      {
+        name: "Hóa đơn",
+        path: `${Redirect.INVOICE}/${Redirect.INFO}`,
+        icon: SettingSideIcon,
+      },
+    ],
+  },
+  {
+    name: "Khách hàng",
+    icon: CustomerSideIcon,
+    children: [
+      {
+        name: "Danh sách",
+        path: `${Redirect.PRODUCT}/${Redirect.LIST}`,
+        icon: SettingSideIcon,
+      },
+      {
+        name: "Thêm khách hàng",
+        path: `${Redirect.PRODUCT}/${Redirect.CREATE}`,
+        icon: SettingSideIcon,
+      },
+    ],
+  },
+  {
+    name: "Sản phẩm",
+    icon: ProductSideIcon,
+    children: [
+      {
+        name: "Danh sách",
+        path: `${Redirect.PRODUCT}/${Redirect.LIST}`,
+        icon: SettingSideIcon,
+      },
+      {
+        name: "Thêm sản phẩm",
+        path: `${Redirect.PRODUCT}/${Redirect.CREATE}`,
+        icon: SettingSideIcon,
+      },
+      {
+        name: "Hóa đơn",
+        path: `${Redirect.INVOICE}/${Redirect.INFO}`,
+        icon: SettingSideIcon,
+      },
+    ],
   },
 ];

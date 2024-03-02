@@ -6,7 +6,7 @@ import { formats, modules } from "./Options";
 
 interface IProps {
   onChange?: (value: string) => void;
-  defaultValue?: string;
+  value?: string;
 }
 
 function Editor(props: IProps) {
@@ -16,7 +16,7 @@ function Editor(props: IProps) {
       modules={modules}
       formats={formats}
       theme="snow"
-      value={props.defaultValue}
+      value={props.value}
       onChange={props.onChange}
     />
   );

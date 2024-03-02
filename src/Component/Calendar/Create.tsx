@@ -4,21 +4,19 @@ import Input from "../../UI/Input/Input";
 import { colors } from "./Data";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../Store/Store";
-import ClosePlanningIcon from "../../Assets/Icon/Planning/Close.svg";
 import {
   calendarSlice,
   createRequest,
   planningGetRequest,
 } from "../../Store/Reducer/Calendar/Planning";
 import moment from "moment";
-import Icon from "../../UI/Icon/Icon";
 
 interface IProps {
   day: string;
   hour: string;
 }
 
-function CreatePlanningCaledarComponent(props: IProps) {
+function CreatePlanning(props: IProps) {
   const dispatch = useDispatch<AppDispatch>();
   const calendarState = useSelector(
     (rootState: RootState) => rootState.calendarState
@@ -28,7 +26,7 @@ function CreatePlanningCaledarComponent(props: IProps) {
     dispatch(calendarSlice.actions.select(String()));
   }
 
-  function updateCreate(key: string, value: string) {
+  function updateCreate(key: string, value: string | boolean) {
     dispatch(
       calendarSlice.actions.create({ ...calendarState.create, [key]: value })
     );
@@ -41,6 +39,7 @@ function CreatePlanningCaledarComponent(props: IProps) {
           planningGetRequest(moment.utc(calendarState.currentTime).week())
         );
       });
+    close();
   }
 
   useEffect(function () {
@@ -60,25 +59,24 @@ function CreatePlanningCaledarComponent(props: IProps) {
     dispatch(calendarSlice.actions.create(initial));
   }, Array.from({ length: 0 }));
   return (
-    <div>
-      <div className="flex flex-col gap-8 p-[24px]">
+    <div className="fixed inset-0 flex justify-center items-center backdrop-blur-[10px] z-50 bg-[#0000001f]">
+      <div
+        className="flex flex-col gap-8 p-[24px] bg-white custom-shadow rounded-2xl min-w-[456px]"
+        onClick={(event) => event.stopPropagation()}
+      >
         <div className="flex flex-col gap-4">
-          <div
-            className="flex justify-between"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <span>Description</span>
-            <Icon src={ClosePlanningIcon} onClick={close}></Icon>
+          <div className="flex justify-between">
+            <span>Mô tả</span>
           </div>
           <Input
             onChange={(event) => updateCreate("name", event.target.value)}
             className="w-[312px]"
             type="text"
-            placeholder="@Description for task"
+            placeholder="@Mô tả công việc..."
           />
         </div>
         <div className="flex flex-col gap-4">
-          <span>Color</span>
+          <span>Màu sắc</span>
           <ul className="flex items-center gap-4">
             {colors.map((item, index) => (
               <li
@@ -99,7 +97,7 @@ function CreatePlanningCaledarComponent(props: IProps) {
         </div>
         <div className="flex w-full gap-4">
           <div className="flex w-full flex-col gap-4">
-            <span>Time start</span>
+            <span>Thời gian bắt đầu</span>
             <Input
               defaultValue={props.hour}
               type="time"
@@ -107,7 +105,7 @@ function CreatePlanningCaledarComponent(props: IProps) {
             />
           </div>
           <div className="flex w-full flex-col gap-4">
-            <span>Time end</span>
+            <span>Thời gian kết thúc</span>
             <Input
               defaultValue={props.hour}
               onChange={(event) => updateCreate("to", event.target.value)}
@@ -116,42 +114,50 @@ function CreatePlanningCaledarComponent(props: IProps) {
           </div>
         </div>
         <nav className="flex flex-col gap-4 py-4">
-          <span>Settings</span>
+          <span>Cài đặt</span>
           <div className="flex gap-4">
             <button
               style={{
                 border: calendarState.create?.setEmail
-                  ? `2px solid`
+                  ? `1px solid`
                   : undefined,
               }}
-              className="custom-button"
+              className="p-4 border rounded-xl"
+              onClick={() =>
+                updateCreate("setEmail", !calendarState.create?.setEmail)
+              }
             >
-              Set in email
+              Gửi mail thông báo
             </button>
             <button
-              style={
-                {
-                  // border: props.planning.setNotification
-                  //   ? `2px solid`
-                  //   : undefined,
-                }
+              style={{
+                border: calendarState.create?.setNotification
+                  ? `1px solid`
+                  : undefined,
+              }}
+              onClick={() =>
+                updateCreate(
+                  "setNotification",
+                  !calendarState.create?.setNotification
+                )
               }
-              // onClick={() => updateCreate("setNotification", true)}
-              className="custom-button"
+              className="p-4 border rounded-xl"
             >
-              Alarm in notifiation
+              Thông báo khi hết hạn
             </button>
           </div>
         </nav>
-        {/* <Button onClick={props.create} icon="add" mode="default">
-          Create
-        </Button> */}
-        <Button onClick={create} icon="add" mode="default">
-          Create
-        </Button>
+        <nav className="flex gap-4 justify-end">
+          <Button onClick={close} mode="warning">
+            Đóng
+          </Button>
+          <Button onClick={create} icon="add" mode="default">
+            Tạo mới
+          </Button>
+        </nav>
       </div>
     </div>
   );
 }
 
-export default CreatePlanningCaledarComponent;
+export default CreatePlanning;

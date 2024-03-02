@@ -12,6 +12,7 @@ import moment from "moment";
 import InfoComponent from "./Info";
 import Name from "../../UI/Name/Name";
 import Select, { Item } from "../../UI/Select/Select";
+import Frame from "../../UI/Frame/Frame";
 
 const mode: Item[] = [
   {
@@ -45,7 +46,7 @@ function PlanningCalendarComponent() {
     changeTime(now);
   }, []);
   return (
-    <div className="custom-frame">
+    <Frame>
       <Name title="Planning"></Name>
       <div className="w-[156px]">
         <Select items={mode} value="Mode view" onSelect={Function}></Select>
@@ -62,7 +63,7 @@ function PlanningCalendarComponent() {
           <TablePlanningComponent />
         </div>
       </div>
-    </div>
+    </Frame>
   );
 }
 

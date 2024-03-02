@@ -26,9 +26,9 @@ interface IProps {
   getContextItemNote: (item: NoteResponse) => ContextHandle[];
 }
 
-const ACTIVE_STYLE = {
-  background: "#DCF8FF",
-};
+// const ACTIVE_STYLE = {
+//   background: "#DCF8FF",
+// };
 
 const data: ISlideshow[] = [
   {
