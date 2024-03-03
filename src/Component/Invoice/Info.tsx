@@ -1,13 +1,14 @@
 import moment from "moment";
 import Logo from "../../Assets/Icon/Linked/Calendar.png";
 import ReactToPrint, { PrintContextConsumer } from "react-to-print";
-import { Product } from "../../Store/Reducer/Invoice/Model";
+import { InvoiceProductCreate } from "../../Store/Reducer/Invoice/Model";
 import { Format } from "../../Handle/Format";
 import Button from "../../UI/Button/Button";
 import { useRef } from "react";
 
 interface IProps {
-  listProduct: Product[];
+  listProduct: InvoiceProductCreate[];
+  onPrint?: () => void;
 }
 
 function InfoInvoice(props: IProps) {
@@ -19,7 +20,14 @@ function InfoInvoice(props: IProps) {
         <PrintContextConsumer>
           {({ handlePrint }) => {
             return (
-              <Button onClick={handlePrint} mode="default" icon="next">
+              <Button
+                onClick={function () {
+                  if (props.onPrint) props.onPrint();
+                  handlePrint();
+                }}
+                mode="default"
+                icon="next"
+              >
                 In hóa đơn
               </Button>
             );
@@ -27,7 +35,7 @@ function InfoInvoice(props: IProps) {
         </PrintContextConsumer>
       </ReactToPrint>
       <div>
-        <div ref={ref} className="bg-white p-12 rounded-xl">
+        <div ref={ref} className="bg-white p-12 rounded-xl custom-shadow">
           <div className="flex flex-col gap-4 items-center">
             <img src={Logo} className="w-[48px]" />
             <span className="font-bold text-3xl">Titan Co.</span>
@@ -59,7 +67,7 @@ function InfoInvoice(props: IProps) {
           </ul>
           <div>
             <span>Danh sách sản phẩm</span>
-            <ul className="flex flex-col gap-6 py-6">
+            <ul className="flex flex-col gap-12 py-6">
               <li className="flex justify-between bg-[#F6F8FA] p-2">
                 <span className="w-full">Mô tả</span>
                 <span className="min-w-[86px]">Số lượng</span>
@@ -68,12 +76,8 @@ function InfoInvoice(props: IProps) {
               </li>
               {props.listProduct.map((item, index) => (
                 <li className="flex justify-between items-center" key={index}>
-                  <span className="flex gap-6 items-center w-full">
-                    <img
-                      className="w-[48px] h-[48px] object-cover rounded-md"
-                      src={item.imageProducts[0].url}
-                    />
-                    <span>{item.name}</span>
+                  <span className="flex gap-6 items-center w-full p-[2px]">
+                    <span>{item.product.name}</span>
                   </span>
                   <span className="min-w-[86px]">{item.quanlity}</span>
                   <span className="min-w-[86px]">

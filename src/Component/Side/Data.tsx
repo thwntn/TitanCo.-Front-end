@@ -162,6 +162,11 @@ export const invoice: Item[] = [
         icon: SettingSideIcon,
       },
       {
+        name: "Tạo hóa đơn",
+        path: `${Redirect.INVOICE}/${Redirect.CREATE}`,
+        icon: SettingSideIcon,
+      },
+      {
         name: "Hóa đơn",
         path: `${Redirect.INVOICE}/${Redirect.INFO}`,
         icon: SettingSideIcon,
@@ -196,11 +201,6 @@ export const invoice: Item[] = [
       {
         name: "Thêm sản phẩm",
         path: `${Redirect.PRODUCT}/${Redirect.CREATE}`,
-        icon: SettingSideIcon,
-      },
-      {
-        name: "Hóa đơn",
-        path: `${Redirect.INVOICE}/${Redirect.INFO}`,
         icon: SettingSideIcon,
       },
     ],

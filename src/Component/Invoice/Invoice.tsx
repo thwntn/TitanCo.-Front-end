@@ -3,7 +3,7 @@ import Frame from "../../UI/Frame/Frame";
 
 function Invoice() {
   return (
-    <Frame className="bg-[#F6F8FA]">
+    <Frame className="bg-[#F6Fsss8FA]">
       <Outlet />
     </Frame>
   );

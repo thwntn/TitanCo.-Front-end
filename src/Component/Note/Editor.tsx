@@ -47,7 +47,6 @@ function EditorNoteComponent() {
           <Input
             value={noteState.noteSelected?.description}
             onChange={(event) => modify("description", event.target.value)}
-            mode="view"
           ></Input>
         </div>
         <div className="flex flex-col px-8 gap-4 w-full custom-shadow rounded-2xl">
@@ -62,7 +61,7 @@ function EditorNoteComponent() {
           <div className="bg-[#F6F7F8] min-h-[512px] rounded-xl">
             <Editor
               onChange={(value) => void modify("content", value)}
-              defaultValue={noteState.noteSelected?.content}
+              value={noteState.noteSelected?.content}
             ></Editor>
           </div>
           <div className=" w-full flex justify-end p-8">

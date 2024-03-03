@@ -4,18 +4,25 @@ export interface InvoiceState {
   products: Product[];
   create: CreateProduct;
   createInvoice: CreateInvoice;
+  payments: Payment[];
 }
 
 export interface CreateInvoice {
-  customerId: string;
-  listProduct: Product[];
+  customerId: string | null;
+  listProduct: InvoiceProductCreate[];
+  payment: Payment | null;
+}
+
+export interface InvoiceProductCreate {
+  product: Product;
+  quanlity: number;
+  price: number;
 }
 
 export interface Product {
   id: string;
   created: string;
   name: string;
-  quanlity: number;
   description: string;
   price: number;
   sale: number;
@@ -40,4 +47,10 @@ export interface CreateProduct {
 export interface AddPicture {
   productId: string;
   form: FormData;
+}
+
+export interface Payment {
+  id: string;
+  name: string;
+  image: string;
 }

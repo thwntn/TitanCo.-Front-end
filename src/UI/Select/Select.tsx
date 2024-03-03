@@ -40,7 +40,7 @@ function Select(props: IProps) {
         </span>
       )}
       <span
-        className="flex items-center px-4 rounded-[8px] custom-border bg-white h-[42px]"
+        className="flex items-center px-4 rounded-[8px] bg-white h-[42px] custom-border"
         onClick={click}
       >
         {props.value}

@@ -7,6 +7,7 @@ import { AppDispatch, RootState } from "../../Store/Store";
 import { listProduct } from "../../Store/Reducer/Invoice/Thunk";
 import { Format } from "../../Handle/Format";
 import Input from "../../UI/Input/Input";
+import Select from "../../UI/Select/Select";
 
 function ListProduct() {
   const dispatch = useDispatch<AppDispatch>();
@@ -18,9 +19,15 @@ function ListProduct() {
   return (
     <React.Fragment>
       <Name title="Danh sách sản phẩm"></Name>
-      <Input placeholder="Tìm kiếm..."></Input>
-      <ul>
-        <li className="flex gap-12 items-center py-4 text-nowrap bg-[#F4F6F8] px-4">
+      <ul className="custom-shadow overflow-hidden rounded-xl">
+        <li className="flex">
+          <input
+            className="border-none shadow-none p-6"
+            placeholder="Tìm kiếm..."
+          ></input>
+          <Select items={[]} value="Chọn bất kì"></Select>
+        </li>
+        <li className="flex gap-12 items-center py-6 text-nowrap bg-[#F4F6F8] px-4">
           <div className="flex gap-4 items-center flex-[1]">Thông tin</div>
           <span className="w-[120px]">Ngày tạo</span>
           <span className="w-[120px]">Giá</span>
@@ -29,12 +36,17 @@ function ListProduct() {
           <span className="w-[120px]">Công cụ</span>
         </li>
         {invoice.products.map((item, index) => (
-          <li className="flex gap-12 items-center py-4 text-nowrap" key={index}>
+          <li
+            className="flex gap-12 items-center text-nowrap border-b border-b-gray-100"
+            key={index}
+          >
             <div className="flex gap-4 items-center flex-[1]">
-              <img
-                className="w-[64px] h-[64px] object-cover  rounded-md"
-                src={item.imageProducts[0]?.url}
-              />
+              <div className="p-6">
+                <img
+                  className="w-[56px] h-[56px] object-cover rounded-xl"
+                  src={item.imageProducts[0]?.url}
+                />
+              </div>
               <div className="flex flex-col">
                 <span className="font-bold">{item.name}</span>
                 <span>{item.description}</span>

@@ -1,5 +1,11 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { AddPicture, CreateProduct, Product } from "./Model";
+import {
+  AddPicture,
+  CreateInvoice,
+  CreateProduct,
+  Payment,
+  Product,
+} from "./Model";
 import { instance } from "../../Axios/Axios";
 import { pathContants } from "./Path";
 
@@ -24,5 +30,18 @@ export const addPicture = createAsyncThunk(
 
 export const listProduct = createAsyncThunk("invoice.listProduct", function () {
   const response = instance.get<Product[]>(pathContants.product);
+  return response;
+});
+
+export const createInvoice = createAsyncThunk(
+  "invoice.create",
+  function (create: CreateInvoice) {
+    const response = instance.post(pathContants.invoice, create);
+    return response;
+  }
+);
+
+export const listPayment = createAsyncThunk("invoice.payment", function () {
+  const response = instance.get<Payment[]>(pathContants.payment);
   return response;
 });
