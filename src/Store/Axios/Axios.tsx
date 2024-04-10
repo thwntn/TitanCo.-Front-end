@@ -1,7 +1,7 @@
 import axios, { AxiosError } from "axios";
 import { store } from "../Store";
 
-export const instance = axios.create({ baseURL: import.meta.env.VITE_URI });
+export const instance = axios.create({ baseURL: import.meta.env.VITE_BACKEND_ENDPOINT });
 
 instance.interceptors.request.use((config) => {
   const user = store.getState().identityState.user;
